@@ -1,0 +1,33 @@
+.p-select-location {
+  .el-input__inner {
+    height: auto !important;
+  }
+
+  .el-cascader__tags {
+    display: block;
+    border-radius: 3px;
+    min-height: 100%;
+    padding: 3px 0;
+    width: auto;
+    background-color: transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 0 none;
+  }
+}
+
+.p-select-location--hasdata {
+  .el-cascader__tags {
+    &:hover {
+      top: 0;
+      display: flex;
+      border: 1px solid #C0C4CC;
+      width: 100%;
+      background-color: #fff;
+      white-space: normal;
+      transform: translateY(0);
+      overflow: visible;
+    }
+  }
+}

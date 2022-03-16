@@ -3,10 +3,11 @@
     <p-select-location
       :options="options"
       @change="selectChange"
-      :props="{ multiple: true }"
+      :props="{ multiple: true, lazy: false }"
       value="id"
       label="mc"
       :show-all-levels="false"
+      clearable
     />
   </div>
 </template>

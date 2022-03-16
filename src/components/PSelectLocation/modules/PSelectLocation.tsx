@@ -1,6 +1,8 @@
 import Vue, { CreateElement, VNode } from 'vue';
-import { Component, Prop } from 'vue-property-decorator'
+import { Component, Prop, Watch } from 'vue-property-decorator'
 import { merge, omit } from '../utils/opera'
+
+import '../styles/index.scss'
 
 interface IData {
   value: string
@@ -22,6 +24,8 @@ export default class PSelectLocation extends Vue {
   @Prop({ type: Function, default: () => [] }) private readonly secondLoad!: Function
 
   @Prop({ type: Function, default: () => [] }) private readonly thirdLoad!: Function
+
+  private location: any = []
 
   render(h: CreateElement): VNode {
     const defaultProps = {
@@ -79,7 +83,8 @@ export default class PSelectLocation extends Vue {
 
     return (
       <el-cascader
-        class="p-select-location"
+        class={['p-select-location', this.location.length > 0 ? 'p-select-location--hasdata' : '']}
+        v-model={this.location}
         {...{ props: $attrs, on: this.$listeners }}
       />
     )
