@@ -44,10 +44,11 @@ export default class PSelectLocation extends Vue {
         if (node.level === 1) {
           const list = await this.secondLoad(node)
           list.forEach((item: any) => {
+            // 前一级为市，代表当前级为区间，无后续节点
             data.push({
               value: item[this.$attrs.value],
               label: item[this.$attrs.label],
-              leaf: !node.label.includes('市') || this.level === 2
+              leaf: node.label.includes('市') || this.level === 2
             })
           });
         }
