@@ -1,6 +1,6 @@
 import Vue, { CreateElement, VNode } from 'vue';
 import { Component, Prop } from 'vue-property-decorator'
-import { merge, omit } from '../../utils/opera'
+import { merge, omit } from '../utils/opera'
 
 interface IData {
   value: string
