@@ -1,5 +1,5 @@
 import _Vue, { PluginFunction, VueConstructor } from 'vue'
-import PSelectLocation from './PSelectLocation/index'
+import PSelectLocation from './PSelectLocation/modules/PSelectLocation'
 
 interface InstallFunction extends PluginFunction<any> {
   installed?: boolean

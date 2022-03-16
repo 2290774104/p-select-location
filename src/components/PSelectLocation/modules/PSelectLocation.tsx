@@ -1,6 +1,6 @@
 import Vue, { CreateElement, VNode } from 'vue';
 import { Component, Prop } from 'vue-property-decorator'
-import { merge, omit } from '../utils/opera'
+import { merge, omit } from '../../utils/opera'
 
 interface IData {
   value: string
@@ -79,6 +79,7 @@ export default class PSelectLocation extends Vue {
 
     return (
       <el-cascader
+        class="p-select-location"
         {...{ props: $attrs, on: this.$listeners }}
       />
     )
