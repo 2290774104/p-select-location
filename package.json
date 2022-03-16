@@ -1,6 +1,6 @@
 {
   "name": "p-select-location",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/p-select-location.common.js",
   "typings": "types/index.d.ts",
   "private": false,
