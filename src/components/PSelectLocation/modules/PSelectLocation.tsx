@@ -1,6 +1,6 @@
 import Vue, { CreateElement, VNode } from 'vue';
-import { Component, Prop, Watch } from 'vue-property-decorator'
-import { merge, omit } from '../utils/opera'
+import { Component, Emit, Model, Prop, Watch } from 'vue-property-decorator'
+import { merge, omit, uuid } from '../utils/opera'
 
 import '../styles/index.scss'
 
@@ -25,7 +25,36 @@ export default class PSelectLocation extends Vue {
 
   @Prop({ type: Function, default: () => [] }) private readonly thirdLoad!: Function
 
+  @Model('update', { type: Array, required: true }) private readonly value!: any[]
+
   private location: any = []
+
+  private uuid = ''
+
+  // 拦截change事件，更新v-model
+  @Emit('change')
+  private cascaderChange(selection: any[]) {
+    this.update(selection)
+    return selection
+  }
+
+  // 更新父级绑定的v-model
+  @Emit('update')
+  private update(selection: any[]) {
+    return selection
+  }
+
+  private created() {
+    this.location = this.value
+    this.uuid = uuid()
+  }
+
+  @Watch('value', { deep: true })
+  private valueChange(newVal: any[]) {
+    this.location = newVal
+    // 更新uuid刷新组件
+    this.uuid = uuid()
+  }
 
   render(h: CreateElement): VNode {
     const defaultProps = {
@@ -86,6 +115,8 @@ export default class PSelectLocation extends Vue {
         class={['p-select-location', this.location.length > 0 ? 'p-select-location--hasdata' : '']}
         v-model={this.location}
         {...{ props: $attrs, on: this.$listeners }}
+        onChange={this.cascaderChange}
+        key={this.uuid}
       />
     )
   }
